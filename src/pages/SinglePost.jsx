@@ -63,7 +63,7 @@ const SinglePost = () => {
                             </span>
                             <div className='description mt-5 px-3' dangerouslySetInnerHTML={{ __html: postInfo.content }} />
                         </div>
-                        <Menu category={postInfo.category} />
+                        <Menu category={postInfo.category} postId={postInfo._id} />
                     </div>
                 </>
             )}

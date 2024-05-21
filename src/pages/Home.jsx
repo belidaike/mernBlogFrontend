@@ -1,29 +1,33 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Post from './Post'
 import Hero from './Hero'
 import { UserContext } from '../UserContext'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+    const nav = useNavigate()
     const { filteredPosts } = useContext(UserContext)
+
+    useEffect(() => {
+        if (filteredPosts) {
+            nav('/')
+        }
+    }, [filteredPosts, nav])
 
     if (!filteredPosts.length) {
         return <div className='d-flex justify-content-center align-items-center w-100' style={{ height: '20px' }}><h1>No Post Found.</h1></div>
     }
 
+
     return (
         <>
+            <Hero />
             <div className="post-container pb-5">
                 {filteredPosts.length > 0
                     ? filteredPosts.map(post => (
-                        <>
-                            <Hero />
-                            <Post key={post._id} post={post} />
-                        </>
+                        <Post key={post._id} post={post} />
                     ))
-                    : <>
-                        <Hero />
-                        <p>No posts available</p>
-                    </>}
+                    : <p>No posts available</p>}
             </div>
         </>
     )

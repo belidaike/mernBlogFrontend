@@ -16,9 +16,11 @@ const Post = ({ post }) => {
                 <span className="info">
                     <time>{distance}</time>
                     <br />
-                    <span className="author">Author: {post.author.username}</span>
+                    <span className="author">author: {post.author.username}</span>
+                    <br />
+                    <span>category: {post.category}</span>
                 </span>
-                <p className='summary'>{post.summary}</p>
+                <h4 className='summary m-0'>{post.summary}</h4>
                 <div className='post-button-container'>
                     <Link className='post-button' to={`/post/${post._id}`}>Read More</Link>
                 </div>
