@@ -46,7 +46,7 @@ const SinglePost = () => {
                 <>
                     <div className='singlepost'>
                         <div className="singlepost-container">
-                            <img className='singlepost-img' src={`https://mernpartialbackend.onrender.com/post/${postInfo.cover}`} alt="" />
+                            <img className='singlepost-img' src={`https://mernpartialbackend.onrender.com/${postInfo.cover}`} alt="" />
                             <h1 style={{ textAlign: 'center', fontFamily: 'Consolas' }}>{postInfo.title}</h1>
                             <time className='px-3 text-secondary'>{format(new Date(postInfo.createdAt), "MM/dd/yyyy")}</time>
 
