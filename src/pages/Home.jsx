@@ -12,13 +12,18 @@ const Home = () => {
 
     return (
         <>
-            <Hero />
             <div className="post-container pb-5">
                 {filteredPosts.length > 0
                     ? filteredPosts.map(post => (
-                        <Post key={post._id} post={post} />
+                        <>
+                            <Hero />
+                            <Post key={post._id} post={post} />
+                        </>
                     ))
-                    : <p>No posts available</p>}
+                    : <>
+                        <Hero />
+                        <p>No posts available</p>
+                    </>}
             </div>
         </>
     )
