@@ -7,6 +7,7 @@ export const UserContextProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState(null)
     const [search, setSearch] = useState('')
     const [posts, setPosts] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -15,6 +16,8 @@ export const UserContextProvider = ({ children }) => {
                 setPosts(response.data)
             } catch (error) {
                 console.error('Error fetching posts:', error)
+            } finally {
+                setLoading(false)
             }
         }
 

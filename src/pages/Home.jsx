@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
     const nav = useNavigate()
-    const { filteredPosts } = useContext(UserContext)
+    const { filteredPosts, loading } = useContext(UserContext)
 
     useEffect(() => {
         if (filteredPosts) {
@@ -14,7 +14,11 @@ const Home = () => {
         }
     }, [filteredPosts, nav])
 
-    if (!filteredPosts.length) {
+
+    if (loading) {
+        return <div className='d-flex justify-content-center align-items-center w-100' style={{ height: '20px' }}><h1>Loading...</h1></div>
+    }
+    if (!filteredPosts.length === 0) {
         return <div className='d-flex justify-content-center align-items-center w-100' style={{ height: '20px' }}><h1>No Post Found.</h1></div>
     }
 

@@ -14,12 +14,16 @@ const Header = () => {
                 const response = await axios.get('https://mernblogbackend-n5y9.onrender.com/profile', { withCredentials: true })
                 setUserInfo(response.data)
             } catch (error) {
-                console.error('Error fetching user profile:', error)
+                // Handle the error gracefully
+                if (error.response && error.response.status === 401) {
+                    console.log('User not authenticated')
+                } else {
+                    console.error('Error fetching user profile:', error)
+                }
             }
         }
 
         fetchData()
-
     }, [setUserInfo])
 
     const logout = async () => {
@@ -36,14 +40,18 @@ const Header = () => {
     return (
         <header className='d-flex justify-content-between align-items-center py-3'>
             <div className='d-flex'>
-                <Link to='/' className='d-flex align-items-center mt-2'><img src={logo} width={32} alt="" /></Link>
-                <Link className='rtblog' style={{ textDecoration: 'none' }} to='/'><h1 className='m-0 kani' >rtBlog</h1></Link>
+                <Link to='/' className='d-flex align-items-center mt-2'>
+                    <img src={logo} width={32} alt="" />
+                </Link>
+                <Link className='rtblog' style={{ textDecoration: 'none' }} to='/'>
+                    <h1 className='m-0 kani'>rtBlog</h1>
+                </Link>
             </div>
             <div className='search-container d-flex align-items-center'>
                 <input type="text" className='search' placeholder='Search' onChange={handleChange} />
                 <IoIosSearch className='search-icon' size={30} />
             </div>
-            <nav className="navbar navbar-expand-lg  gap-3">
+            <nav className="navbar navbar-expand-lg gap-3">
                 <div className="container-fluid d-flex justify-content-end">
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -54,9 +62,8 @@ const Header = () => {
                                 <span className="nav-item">
                                     <Link className='' onClick={logout}>Logout</Link>
                                 </span>
-
                             ) : (
-                                <li className="nav-item nav-2 d-flex gap-3 ">
+                                <li className="nav-item nav-2 d-flex gap-3">
                                     <Link className='text-decoration-none' to='/login'>Login</Link>
                                     <Link className='text-decoration-none' to='/register'>Register</Link>
                                 </li>

@@ -10,6 +10,7 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const { setUserInfo, userInfo } = useContext(UserContext)
+
     const nav = useNavigate()
     const login = async e => {
         e.preventDefault()
@@ -26,12 +27,8 @@ const Login = () => {
                 const userInfo = response.data
                 setUserInfo(userInfo)
                 nav('/')
-            } else {
-                alert('Wrong credentials')
             }
         } catch (error) {
-            alert('Error during login')
-            console.error(error)
         }
     }
     useEffect(() => {
