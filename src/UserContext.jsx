@@ -26,7 +26,8 @@ export const UserContextProvider = ({ children }) => {
     const filteredPosts = posts.filter(post => {
         return (
             post.title.toLowerCase().includes(search.toLowerCase()) ||
-            post.summary.toLowerCase().includes(search.toLowerCase()) || post.author.username.toLowerCase().includes(search.toLowerCase())
+            post.summary.toLowerCase().includes(search.toLowerCase()) ||
+            post.author.username.toLowerCase().includes(search.toLowerCase())
         )
     })
 

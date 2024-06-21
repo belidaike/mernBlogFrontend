@@ -11,10 +11,12 @@ const Header = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://mernblogbackend-n5y9.onrender.com/profile', { withCredentials: true })
-                setUserInfo(response.data)
+                if (userInfo) {
+                    const response = await axios.get('https://mernblogbackend-n5y9.onrender.com/api/auth/profile', { withCredentials: true })
+                    setUserInfo(response.data)
+                }
+                return
             } catch (error) {
-                // Handle the error gracefully
                 if (error.response && error.response.status === 401) {
                     console.log('User not authenticated')
                 } else {
@@ -24,11 +26,11 @@ const Header = () => {
         }
 
         fetchData()
-    }, [setUserInfo])
+    }, [setUserInfo, userInfo])
 
     const logout = async () => {
         try {
-            await axios.post('https://mernblogbackend-n5y9.onrender.com/logout', {}, { withCredentials: true })
+            await axios.post('https://mernblogbackend-n5y9.onrender.com//api/auth/logout', {}, { withCredentials: true })
             setUserInfo(null)
         } catch (error) {
             console.error('Error logging out:', error)
@@ -41,7 +43,7 @@ const Header = () => {
         <header className='d-flex justify-content-between align-items-center py-3'>
             <div className='d-flex'>
                 <Link to='/' className='d-flex align-items-center mt-2'>
-                    <img src={logo} width={32} alt="" />
+                    <img src={logo} width={32} alt="Logo" />
                 </Link>
                 <Link className='rtblog' style={{ textDecoration: 'none' }} to='/'>
                     <h1 className='m-0 kani'>rtBlog</h1>
@@ -60,7 +62,7 @@ const Header = () => {
                         <ul className="navbar-nav">
                             {username ? (
                                 <span className="nav-item">
-                                    <Link className='' onClick={logout}>Logout</Link>
+                                    <Link className='text-decoration-none' to='#' onClick={logout}>Logout</Link>
                                 </span>
                             ) : (
                                 <li className="nav-item nav-2 d-flex gap-3">

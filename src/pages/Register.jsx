@@ -18,7 +18,9 @@ const Register = () => {
         e.preventDefault()
 
         try {
-            const response = await axios.post('https://mernblogbackend-n5y9.onrender.com/register', {
+
+            // const response = await axios.post('https://mernblogbackend-n5y9.onrender.com/register', {
+            const response = await axios.post('https://mernblogbackend-n5y9.onrender.com/api/auth/register', {
                 username,
                 password,
                 email

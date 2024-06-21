@@ -9,17 +9,13 @@ const Home = () => {
     const { filteredPosts, loading } = useContext(UserContext)
 
     useEffect(() => {
-        if (filteredPosts) {
+        if (!loading || filteredPosts) {
             nav('/')
         }
-    }, [filteredPosts, nav])
-
+    }, [filteredPosts, nav, loading])
 
     if (loading) {
         return <div className='d-flex justify-content-center align-items-center w-100' style={{ height: '20px' }}><h1>Loading...</h1></div>
-    }
-    if (!filteredPosts.length === 0) {
-        return <div className='d-flex justify-content-center align-items-center w-100' style={{ height: '20px' }}><h1>No Post Found.</h1></div>
     }
 
 
@@ -31,7 +27,7 @@ const Home = () => {
                     ? filteredPosts.map(post => (
                         <Post key={post._id} post={post} />
                     ))
-                    : <p>No posts available</p>}
+                    : <div className='d-flex justify-content-center align-items-center w-100' style={{ height: '20px' }}><h1>No posts available</h1></div>}
             </div>
         </>
     )

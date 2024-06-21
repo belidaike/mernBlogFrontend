@@ -10,18 +10,20 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const { setUserInfo, userInfo } = useContext(UserContext)
-
     const nav = useNavigate()
+
     const login = async e => {
         e.preventDefault()
 
         try {
-            const response = await axios.post('https://mernblogbackend-n5y9.onrender.com/login', {
+            ///api/auth/register
+            // const response = await axios.post('https://mernblogbackend-n5y9.onrender.com/login', {
+            const response = await axios.post('https://mernblogbackend-n5y9.onrender.com/api/auth/login', {
                 username,
                 password
             }, {
                 withCredentials: true
-            });
+            })
 
             if (response.status === 200) {
                 const userInfo = response.data

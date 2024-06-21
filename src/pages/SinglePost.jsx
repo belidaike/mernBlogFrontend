@@ -16,6 +16,7 @@ const SinglePost = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                // const response = await axios.get(`https://mernblogbackend-n5y9.onrender.com/post/${id}`)
                 const response = await axios.get(`https://mernblogbackend-n5y9.onrender.com/post/${id}`)
                 setPostInfo(response.data)
             } catch (error) {
