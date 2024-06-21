@@ -12,7 +12,6 @@ const Header = () => {
         const fetchData = async () => {
             try {
                 if (userInfo) {
-                    // const response = await axios.get('https://mernblogbackend-n5y9.onrender.com/api/auth/profile', { withCredentials: true })
                     const response = await axios.get('https://mernblogbackend-n5y9.onrender.com/api/auth/profile', { withCredentials: true })
                     setUserInfo(response.data)
                 }
