@@ -30,7 +30,7 @@ const Header = () => {
 
     const logout = async () => {
         try {
-            await axios.post('https://mernblogbackend-n5y9.onrender.com//api/auth/logout', {}, { withCredentials: true })
+            await axios.post('https://mernblogbackend-n5y9.onrender.com/api/auth/logout', {}, { withCredentials: true })
             setUserInfo(null)
         } catch (error) {
             console.error('Error logging out:', error)
