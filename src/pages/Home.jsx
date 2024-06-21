@@ -9,7 +9,7 @@ const Home = () => {
     const { filteredPosts, loading } = useContext(UserContext)
 
     useEffect(() => {
-        if (!loading || filteredPosts) {
+        if (loading || filteredPosts) {
             nav('/')
         }
     }, [filteredPosts, nav, loading])

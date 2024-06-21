@@ -35,7 +35,7 @@ export const UserContextProvider = ({ children }) => {
         setSearch(e.target.value)
     }
     return (
-        <UserContext.Provider value={{ userInfo, setUserInfo, filteredPosts, handleChange, posts }}>
+        <UserContext.Provider value={{ userInfo, setUserInfo, filteredPosts, handleChange, posts, loading }}>
             {children}
         </UserContext.Provider>
     )
